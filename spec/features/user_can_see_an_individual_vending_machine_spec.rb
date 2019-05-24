@@ -14,10 +14,15 @@ RSpec.describe 'When a user visits a vending machine show page', type: :feature 
     owner = Owner.create(name: "Sam's Snacks")
     dons  = owner.machines.create(location: "Don's Mixed Drinks")
 
-    snack_1 = Snack.create!(name: 'Coke', price: 2.99, machine: dons)
-    snack_2 = Snack.create!(name: 'Sprite', price: 1.99, machine: dons)
-    snack_3 = Snack.create!(name: 'Red Punch', price: 2.99, machine: dons)
-    snack_4 = Snack.create!(name: 'Water', price: 1.99, machine: dons)
+    snack_1 = Snack.create!(name: 'Coke', price: 2.99)
+    snack_2 = Snack.create!(name: 'Sprite', price: 1.99)
+    snack_3 = Snack.create!(name: 'Red Punch', price: 2.99)
+    snack_4 = Snack.create!(name: 'Water', price: 1.99)
+
+    ms_1 = MachineSnack.create(snack: snack_1, machine: dons)
+    ms_2 = MachineSnack.create(snack: snack_2, machine: dons)
+    ms_3 = MachineSnack.create(snack: snack_3, machine: dons)
+    ms_4 = MachineSnack.create(snack: snack_4, machine: dons)
 
     visit machine_path(dons)
 
@@ -47,10 +52,10 @@ RSpec.describe 'When a user visits a vending machine show page', type: :feature 
     owner = Owner.create(name: "Sam's Snacks")
     dons  = owner.machines.create(location: "Don's Mixed Drinks")
 
-    snack_1 = Snack.create!(name: 'Coke', price: 2.99, machine: dons)
-    snack_2 = Snack.create!(name: 'Sprite', price: 1.99, machine: dons)
-    snack_3 = Snack.create!(name: 'Red Punch', price: 2.99, machine: dons)
-    snack_4 = Snack.create!(name: 'Water', price: 1.99, machine: dons)
+    snack_1 = MachineSnack.create(snack: Snack.create!(name: 'Coke', price: 2.99), machine: dons)
+    snack_2 = MachineSnack.create(snack: Snack.create!(name: 'Sprite', price: 1.99), machine: dons)
+    snack_3 = MachineSnack.create(snack: Snack.create!(name: 'Red Punch', price: 2.99), machine: dons)
+    snack_4 = MachineSnack.create(snack: Snack.create!(name: 'Water', price: 1.99), machine: dons)
 
     visit machine_path(dons)
 
